@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface DotaRestApi {
-    @GET("heroes")
+    @GET("heroStats")
     Call<List<DotaHeroes>> getHeroes();
 }
