@@ -48,26 +48,32 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
 
     @Override
     public DotaHeroesList_RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        LayoutInflater inflater = LayoutInflater.from(
-                parent.getContext());
-        View v =
-                inflater.inflate(R.layout.heroeslist_layout, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View v = inflater.inflate(R.layout.heroeslist_layout, parent, false);
         ViewHolder vh = new ViewHolder(v);
+
+        vh.itemView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DotaHeroes hero = values.get(vh.getAdapterPosition());
+
+            }
+        });
+
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final DotaHeroes hero = values.get(position);
+        DotaHeroes hero = values.get(position);
         holder.txtHeader.setText(hero.getLocalized_name());
         holder.txtFooter.setText(hero.getName());
-        try {
-            holder.icon.setImageBitmap(BitmapFactory.decodeStream(new java.net.URL("https://www.google.com/images/srpr/logo11w.png").openStream()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        new DownloadBitmap(holder.icon, this::setIconHeight).execute("https://api.opendota.com" + hero.getIcon());
+    }
+
+    public void setIconHeight(ImageView view) {
+        view.getLayoutParams().width = view.getHeight();
     }
 
     @Override
