@@ -1,6 +1,6 @@
 package com.example.mobileproject;
 
-public class DotaHeroes {
+public class DotaHero {
     private int id;
     private String name;
     private String localized_name;

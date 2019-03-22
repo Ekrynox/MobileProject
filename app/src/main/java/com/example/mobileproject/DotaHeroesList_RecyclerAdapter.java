@@ -1,10 +1,7 @@
 package com.example.mobileproject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +12,7 @@ import android.widget.TextView;
 
 
 public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHeroesList_RecyclerAdapter.ViewHolder> {
-    private List<DotaHeroes> values;
+    private List<DotaHero> values;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtHeader;
@@ -26,13 +23,13 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         public ViewHolder(View v) {
             super(v);
             layout = v;
-            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-            txtFooter = (TextView) v.findViewById(R.id.secondLine);
-            icon = (ImageView) v.findViewById(R.id.icon);
+            txtHeader = v.findViewById(R.id.firstLine);
+            txtFooter = v.findViewById(R.id.secondLine);
+            icon = v.findViewById(R.id.icon);
         }
     }
 
-    public void add(int position, DotaHeroes item) {
+    public void add(int position, DotaHero item) {
         values.add(position, item);
         notifyItemInserted(position);
     }
@@ -42,7 +39,7 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         notifyItemRemoved(position);
     }
 
-    public DotaHeroesList_RecyclerAdapter(List<DotaHeroes> myDataset) {
+    public DotaHeroesList_RecyclerAdapter(List<DotaHero> myDataset) {
         values = myDataset;
     }
 
@@ -55,7 +52,7 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         vh.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                DotaHeroes hero = values.get(vh.getAdapterPosition());
+                DotaHero hero = values.get(vh.getAdapterPosition());
 
             }
         });
@@ -65,7 +62,7 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        DotaHeroes hero = values.get(position);
+        DotaHero hero = values.get(position);
         holder.txtHeader.setText(hero.getLocalized_name());
         holder.txtFooter.setText(hero.getName());
 
