@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHeroesList_RecyclerAdapter.ViewHolder> {
     private List<DotaHero> values;
+    private HeroesListActivity activity;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtHeader;
@@ -39,8 +40,9 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         notifyItemRemoved(position);
     }
 
-    public DotaHeroesList_RecyclerAdapter(List<DotaHero> myDataset) {
+    public DotaHeroesList_RecyclerAdapter(List<DotaHero> myDataset, HeroesListActivity activity) {
         values = myDataset;
+        this.activity = activity;
     }
 
     @Override
@@ -52,8 +54,7 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         vh.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                DotaHero hero = values.get(vh.getAdapterPosition());
-
+                activity.showHeroesStat(vh.getAdapterPosition());
             }
         });
 

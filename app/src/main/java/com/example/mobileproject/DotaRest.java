@@ -39,8 +39,8 @@ public class DotaRest {
         call.enqueue(new RestCallBack<>(success));
     }
 
-    public void loadHeroMatches(Consumer<List<DotaHeroMatch>> success) {
-        Call<List<DotaHeroMatch>> call = gerritAPI.getHeroMatches();
+    public void loadHeroMatches(int heroId, Consumer<List<DotaHeroMatch>> success) {
+        Call<List<DotaHeroMatch>> call = gerritAPI.getHeroMatches(heroId);
         call.enqueue(new RestCallBack<>(success));
     }
 
