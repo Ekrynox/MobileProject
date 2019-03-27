@@ -1,4 +1,4 @@
-package com.example.mobileproject;
+package com.example.mobileproject.model;
 
 public class DotaHero {
     private int id;
@@ -36,10 +36,10 @@ public class DotaHero {
     }
 
     public String getImg() {
-        return img;
+        return "https://api.opendota.com" + img;
     }
 
     public String getIcon() {
-        return icon;
+        return "https://api.opendota.com" + icon;
     }
 }

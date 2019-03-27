@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.mobileproject.controller.DotaRest;
+import com.example.mobileproject.model.DotaHero;
+
 import java.util.List;
 
 
@@ -13,6 +16,7 @@ public class HeroesListActivity extends AppCompatActivity {
 
     public static String EXTRA_HEROID = "com.example.mobileproject.heroId";
     public static String EXTRA_HERONAME = "com.example.mobileproject.heroName";
+    public static String EXTRA_HEROIMG = "com.example.mobileproject.heroImg";
 
     private List<DotaHero> heroeslist;
 
@@ -22,7 +26,7 @@ public class HeroesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DotaRest controller = DotaRest.getInstance();
-        controller.loadHeroes(this::updateHeroesList);
+        controller.loadHeroes(this::updateHeroesList, null);
     }
 
     void updateHeroesList(List<DotaHero> heroeslist) {
@@ -43,6 +47,7 @@ public class HeroesListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HeroStatActivity.class);
         intent.putExtra(EXTRA_HEROID, heroeslist.get(id).getId());
         intent.putExtra(EXTRA_HERONAME, heroeslist.get(id).getLocalized_name());
+        intent.putExtra(EXTRA_HEROIMG, heroeslist.get(id).getImg());
         startActivity(intent);
     }
 }

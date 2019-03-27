@@ -36,7 +36,9 @@ public class DownloadBitmap extends AsyncTask<String,Void, Bitmap> {
     protected void onPostExecute(Bitmap result){
         if(result != null) {
             imageView.setImageBitmap(result);
-            callback.accept(imageView);
+            if(callback != null) {
+                callback.accept(imageView);
+            }
         }
     }
 }

@@ -1,7 +1,14 @@
-package com.example.mobileproject;
+package com.example.mobileproject.model;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class DotaHeroMatch {
-    private int match_id;
+
+
+    private long match_id;
     private int duration;
     private int start_time;
     private boolean radiant_win;
@@ -14,7 +21,7 @@ public class DotaHeroMatch {
     private int deaths;
     private int assists;
 
-    public int getMatch_id() {
+    public long getMatch_id() {
         return match_id;
     }
 

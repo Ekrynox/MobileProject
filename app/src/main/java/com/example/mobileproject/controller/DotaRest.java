@@ -1,11 +1,13 @@
-package com.example.mobileproject;
+package com.example.mobileproject.controller;
 
 
-import android.support.v7.app.AppCompatActivity;
-
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.example.mobileproject.model.DotaHero;
+import com.example.mobileproject.model.DotaHeroMatch;
+import com.example.mobileproject.view.DotaRestApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,22 +36,24 @@ public class DotaRest {
         gerritAPI = retrofit.create(DotaRestApi.class);
     }
 
-    public void loadHeroes(Consumer<List<DotaHero>> success) {
+    public void loadHeroes(Consumer<List<DotaHero>> success, Runnable failure) {
         Call<List<DotaHero>> call = gerritAPI.getHeroes();
-        call.enqueue(new RestCallBack<>(success));
+        call.enqueue(new RestCallBack<>(success, failure));
     }
 
-    public void loadHeroMatches(int heroId, Consumer<List<DotaHeroMatch>> success) {
-        Call<List<DotaHeroMatch>> call = gerritAPI.getHeroMatches(heroId);
-        call.enqueue(new RestCallBack<>(success));
+    public void loadHeroMatches(int heroId, Consumer<List<DotaHeroMatch>> success, Runnable failure) {
+        Call<List<DotaHeroMatch>> call = gerritAPI.getHeroMatches(Integer.toString(heroId));
+        call.enqueue(new RestCallBack<>(success, failure));
     }
 
     
     public class RestCallBack<T> implements Callback<T> {
         private Consumer<T> success;
+        private Runnable failure;
 
-        public RestCallBack(Consumer<T> success) {
+        public RestCallBack(Consumer<T> success, Runnable failure) {
             this.success = success;
+            this.failure = failure;
         }
 
         @Override
@@ -66,6 +70,9 @@ public class DotaRest {
         @Override
         public void onFailure(Call<T> call, Throwable t) {
             t.printStackTrace();
+            if (failure != null) {
+                failure.run();
+            }
         }
     }
 

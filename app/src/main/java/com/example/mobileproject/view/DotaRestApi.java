@@ -1,4 +1,7 @@
-package com.example.mobileproject;
+package com.example.mobileproject.view;
+
+import com.example.mobileproject.model.DotaHero;
+import com.example.mobileproject.model.DotaHeroMatch;
 
 import java.util.List;
 
@@ -11,5 +14,5 @@ public interface DotaRestApi {
     Call<List<DotaHero>> getHeroes();
 
     @GET("heroes/{hero_id}/matches")
-    Call<List<DotaHeroMatch>> getHeroMatches(@Path("hero_id") int heroId);
+    Call<List<DotaHeroMatch>> getHeroMatches(@Path("hero_id") String hero_id);
 }

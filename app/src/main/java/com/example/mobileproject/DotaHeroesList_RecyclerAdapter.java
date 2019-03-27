@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mobileproject.model.DotaHero;
+
 
 public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHeroesList_RecyclerAdapter.ViewHolder> {
     private List<DotaHero> values;
@@ -67,7 +69,7 @@ public class DotaHeroesList_RecyclerAdapter extends RecyclerView.Adapter<DotaHer
         holder.txtHeader.setText(hero.getLocalized_name());
         holder.txtFooter.setText(hero.getName());
 
-        new DownloadBitmap(holder.icon, this::setIconHeight).execute("https://api.opendota.com" + hero.getIcon());
+        new DownloadBitmap(holder.icon, this::setIconHeight).execute(hero.getIcon());
     }
 
     public void setIconHeight(ImageView view) {
