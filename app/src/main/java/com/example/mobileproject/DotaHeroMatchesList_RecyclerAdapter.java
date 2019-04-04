@@ -58,8 +58,6 @@ public class DotaHeroMatchesList_RecyclerAdapter extends RecyclerView.Adapter<Do
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         DotaHeroMatch match = values.get(position);
-        /*holder.txtHeader.setText(hero.getLocalized_name());
-        holder.txtFooter.setText(hero.getName());*/
         holder.txtName.setText(match.getLeague_name());
         holder.txtStat.setText("K/D/A: " + match.getKills() + "/" + match.getDeaths() + "/" + match.getAssists());
 
