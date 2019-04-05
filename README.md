@@ -18,13 +18,15 @@ A list of the last matches of an hero.
 ## Functionalities
 * Gitflow
 * MVC
-* Recylcler View
-* Rest API
-* Retrofit
+* Recycler View
+* Cache of data and image
+* Image loading and access to a REST API
 
 ## Built With
 * [Dota 2](https://docs.opendota.com/) - Dota 2 API
+* [Glide](https://github.com/bumptech/glide) - To load and cache image
 * [Retrofit](https://square.github.io/retrofit/) - To access to Rest API
+* [ROOM](https://developer.android.com/training/data-storage/room/index.html) - To do caching
 
 ## Authors
 * **Lucas Alias** - [Ekrynox](https://github.com/Ekrynox)
